@@ -1,0 +1,49 @@
+POST http://localhost:5000/api/auth/register
+Content-type: application/json
+
+{
+    "username":"NguyenBang",
+    "password":"bang2269"
+}
+
+###
+
+POST http://localhost:5000/api/auth/login
+Content-type: application/json
+
+{
+    "username":"NguyenBangtuyet",
+    "password":"bang2269"
+}
+###
+POST http://localhost:5000/api/post
+Content-type: application/json
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOiI2MjZlMzZjNzIyZTI0MGNhNThhYTEyY2MiLCJpYXQiOjE2NTEzOTAzMTl9.dtTmQupG_BA2GIDkFlfwWldGYiXS7eI5rcfj1YizOyc
+
+{
+ "title": "Do my homework continue",
+    "status": false,
+    "description":"Math, english...",
+    "createDate":"13/12/2022"
+}
+###
+GET http://localhost:5000/api/post
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOiI2MjZlMzZjNzIyZTI0MGNhNThhYTEyY2MiLCJpYXQiOjE2NTEzOTA3MDh9.ECd0apEIu3sEsgKemChErDhvPI2rrheR2L09SkGiDWU
+
+###
+PUT http://localhost:5000/api/post/626e377eff94d729f02b0d78
+Content-type: application/json
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOiI2MjZlMzZjNzIyZTI0MGNhNThhYTEyY2MiLCJpYXQiOjE2NTEzOTA3MDh9.ECd0apEIu3sEsgKemChErDhvPI2rrheR2L09SkGiDWU
+
+
+{
+ "title": "Do my homework on Thursday",
+    "status": false,
+    "description":"Math, english...",
+    "createDate":"13/12/2022"
+}
+###
+DELETE http://localhost:5000/api/post/626e3cce21f65ad03cf2bf97
+Content-type: application/json
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOiI2MjZlMzZjNzIyZTI0MGNhNThhYTEyY2MiLCJpYXQiOjE2NTEzOTA3MDh9.ECd0apEIu3sEsgKemChErDhvPI2rrheR2L09SkGiDWU
+
