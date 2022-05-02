@@ -42,11 +42,19 @@ const useStyles = makeStyles({
   },
   description: {
     width: "100%",
-    height: "70%",
+    height: "20%",
+  },
+  btnStyle: {
+    width: "100%",
   },
   allSection: {
     width: "90%",
-    height: "90%",
+    height: "80%",
+  },
+  textDashboard: {
+    fontSize: "19px",
+    fontWeight: "600",
+    cursor: "pointer",
   },
 });
 
@@ -89,7 +97,15 @@ const DashBoard = () => {
                 always know what's next. Your task list sits alongside your
                 daily meetings for clarity on what you need to accomplish next.
               </span>
-              <Link to="/login">GET STARTED</Link>
+            </Box>
+            <Box className={classes.btnStyle}>
+              <span className={classes.textDashboard}>
+                {" "}
+                <Link to="/login" style={{ color: "black" }}>
+                  GET STARTED
+                </Link>
+                <span style={{ margin: "0 5px" }}>→</span>
+              </span>
             </Box>
           </Box>
         </Grid>
