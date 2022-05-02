@@ -7,7 +7,6 @@ import Typography from "@mui/material/Typography";
 import Menu from "@mui/material/Menu";
 import MenuIcon from "@mui/icons-material/Menu";
 import Container from "@mui/material/Container";
-import Avatar from "@mui/material/Avatar";
 import Button from "@mui/material/Button";
 import Tooltip from "@mui/material/Tooltip";
 import MenuItem from "@mui/material/MenuItem";
@@ -35,7 +34,11 @@ const Header = () => {
   };
 
   return (
-    <AppBar position="static">
+    <AppBar
+      position="static"
+      style={{ backgroundColor: "black" }}
+      sx={{ py: 1 }}
+    >
       <Container maxWidth="xl">
         <Toolbar disableGutters>
           <Typography
@@ -106,7 +109,33 @@ const Header = () => {
           <Box sx={{ flexGrow: 0 }}>
             <Tooltip title="Open settings">
               <IconButton onClick={handleOpenUserMenu} sx={{ p: 0 }}>
-                <Avatar alt="Remy Sharp" src="/static/images/avatar/2.jpg" />
+                {/* <Avatar alt="Remy Sharp" src="/static/images/avatar/2.jpg" /> */}
+                <Typography
+                  textAlign="center"
+                  sx={{
+                    color: "white",
+                    fontWeight: "500",
+                    px: 3,
+                    fontSize: "15px",
+                    letterSpacing: "0.05rem",
+                  }}
+                >
+                  LOG IN
+                </Typography>
+                <Typography
+                  textAlign="center"
+                  sx={{
+                    color: "black",
+                    fontWeight: "500",
+                    px: 3,
+                    padding: "10px 20px",
+                    backgroundColor: "white",
+                    fontSize: "15px",
+                    letterSpacing: "0.05rem",
+                  }}
+                >
+                  REGISTER
+                </Typography>
               </IconButton>
             </Tooltip>
             <Menu
