@@ -11,7 +11,7 @@ const PostSchema = new Schema({
     type: String,
   },
   status: {
-    type: String,
+    type: Boolean,
   },
   createDate: {
     type: String,

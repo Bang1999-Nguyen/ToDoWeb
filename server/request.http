@@ -2,8 +2,8 @@ POST http://localhost:5000/api/auth/register
 Content-type: application/json
 
 {
-    "username":"NguyenBang",
-    "password":"bang2269"
+    "username":"NguyenAnh",
+    "password":"Bang2269@"
 }
 
 ###
@@ -12,19 +12,19 @@ POST http://localhost:5000/api/auth/login
 Content-type: application/json
 
 {
-    "username":"NguyenBangtuyet",
-    "password":"bang2269"
+    "username":"NguyenAnh",
+    "password":"Bang2269@"
 }
 ###
 POST http://localhost:5000/api/post
 Content-type: application/json
-Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOiI2MjZlMzZjNzIyZTI0MGNhNThhYTEyY2MiLCJpYXQiOjE2NTEzOTAzMTl9.dtTmQupG_BA2GIDkFlfwWldGYiXS7eI5rcfj1YizOyc
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOiI2MjcwMDIzMWYwYmE4NTc1YWZiZmZjZTIiLCJpYXQiOjE2NTE1MDc3OTB9.F7kNjj29aVU8kiUtGKYPfAYtTK_XTvmLGNAjtarGxXE
 
 {
- "title": "Do my homework continue",
-    "status": false,
-    "description":"Math, english...",
-    "createDate":"13/12/2022"
+ "title": "Pay bills, clean the house",
+    "status": true,
+    "description":"Regain clarity and calmness by getting all those tasks out of your head and onto your to-do list (no matter where you are or what device you use).",
+    "createDate":"16/12/2022"
 }
 ###
 GET http://localhost:5000/api/post
