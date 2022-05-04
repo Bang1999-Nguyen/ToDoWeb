@@ -76,13 +76,13 @@ const ToDoForm = (props) => {
     <>
       <form onSubmit={formik.handleSubmit} id="todoForm">
         <BootstrapDialog
-          onClose={handleCloseModal}
+          onClose={handleResetForm}
           open={openModal}
           maxWidth="lg"
         >
           <BootstrapDialogTitle
             id="customized-dialog-title"
-            onClose={handleCloseModal}
+            onClose={handleResetForm}
             sx={{ fontSize: "18px" }}
           >
             Tạo công việc / nhiệm vụ
@@ -93,7 +93,7 @@ const ToDoForm = (props) => {
           <DialogActions sx={{ my: 2, mx: 2 }}>
             <Button
               variant="contained"
-              onClick={handleCloseModal}
+              onClick={handleResetForm}
               sx={{
                 mr: 1,
                 px: 4,

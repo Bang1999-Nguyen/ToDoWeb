@@ -1,6 +1,5 @@
 import React, { useEffect, useState, useContext } from "react";
 import Cookies from "universal-cookie";
-import ToDoService from "../../services/ToDo/todo.service";
 import Box from "@mui/material/Box";
 import { makeStyles } from "@mui/styles";
 import Grid from "@mui/material/Grid";
@@ -40,8 +39,7 @@ const ToDo = () => {
   const token = cookies.get("token");
   const [isLoading, setIsLoading] = useState(false);
   const { getToDoList, createToDoList } = useContext(ToDoContext);
-
-  const [isEditing, setIsEditing] = useState(false);
+  //   const [isEditing, setIsEditing] = useState(false);
   const [openModal, setOpenModal] = useState(false);
 
   const handleOpenModal = () => {
@@ -128,7 +126,24 @@ const ToDo = () => {
                     <ToDoComponent key={todo.id} todo={todo} />
                   ))}
                 </Box>
-              ) : null}
+              ) : (
+                <Box
+                  sx={{
+                    width: "100%",
+                    height: "70%",
+                    display: "flex",
+                    justifyContent: "center",
+                    alignItems: "center",
+                  }}
+                >
+                  <img
+                    src="https://i.pinimg.com/originals/ae/8a/c2/ae8ac2fa217d23aadcc913989fcc34a2.png"
+                    alt="empty"
+                    width={400}
+                    height={300}
+                  />
+                </Box>
+              )}
             </Box>
           </Grid>
           <ToDoForm

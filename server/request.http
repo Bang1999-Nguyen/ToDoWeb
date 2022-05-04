@@ -12,7 +12,7 @@ POST http://localhost:5000/api/auth/login
 Content-type: application/json
 
 {
-    "username":"NguyenAnh",
+    "username":"TuyetBang",
     "password":"Bang2269@"
 }
 ###
@@ -46,4 +46,9 @@ Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOiI2MjZlM
 DELETE http://localhost:5000/api/post/626e3cce21f65ad03cf2bf97
 Content-type: application/json
 Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOiI2MjZlMzZjNzIyZTI0MGNhNThhYTEyY2MiLCJpYXQiOjE2NTEzOTA3MDh9.ECd0apEIu3sEsgKemChErDhvPI2rrheR2L09SkGiDWU
+
+###
+###
+GET http://localhost:5000/api/auth/profile
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOiI2MjcxZjRiMGI0YTA3NDQxZWRlMjc0Y2UiLCJpYXQiOjE2NTE2MzU0MTh9.y5Ukm_7a5PmNBcLsBg5TzI_E6d0ZTWhUjdbJICYnigI
 

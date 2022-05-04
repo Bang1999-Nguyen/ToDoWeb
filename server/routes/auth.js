@@ -5,6 +5,7 @@ const jwt = require("jsonwebtoken");
 const router = express.Router();
 
 const User = require("../models/User");
+const verifytoken = require("../middleware/auth");
 
 // @route POST api/auth
 // Register user
@@ -88,6 +89,16 @@ router.post("/login", async (req, res) => {
       message: "Logged in successfully!",
       accessToken,
     });
+  } catch (error) {
+    console.log(error);
+    res.json(500).json({ success: false, message: "Internal Server Error" });
+  }
+});
+
+router.get("/profile", verifytoken, async (req, res) => {
+  try {
+    const users = await User.find({ _id: req.userId });
+    res.json({ success: true, user: users });
   } catch (error) {
     console.log(error);
     res.json(500).json({ success: false, message: "Internal Server Error" });

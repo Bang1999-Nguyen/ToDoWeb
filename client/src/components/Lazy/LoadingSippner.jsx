@@ -16,7 +16,7 @@ const LoadingSippner = () => {
       }}
     >
       <img
-        src="https://thumbs.gfycat.com/UncommonCrazyAfricanaugurbuzzard-max-1mb.gif"
+        src="https://c.tenor.com/64UaxgnTfx0AAAAC/memes-loading.gif"
         alt="loading.."
       />
     </div>

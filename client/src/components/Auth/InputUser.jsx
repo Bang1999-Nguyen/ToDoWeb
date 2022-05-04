@@ -5,12 +5,7 @@ import { styled } from "@mui/material/styles";
 import Button from "@mui/material/Button";
 import { useFormik } from "formik";
 import * as Yup from "yup";
-import UserService from "../../services/SignIn/signin.services";
-import { toast } from "react-toastify";
-import "react-toastify/dist/ReactToastify.css";
-import Cookies from "universal-cookie";
-import { useNavigate } from "react-router-dom";
-const cookies = new Cookies();
+// import UserService from "../../services/Users/user.services";
 
 const ColorButton = styled(Button)(({ theme }) => ({
   color: "#fff",
@@ -24,9 +19,10 @@ const ColorButton = styled(Button)(({ theme }) => ({
   cursor: "pointer",
   fontSize: "16px",
 }));
-toast.configure({});
-const InputUser = () => {
-  let navigate = useNavigate();
+
+const InputUser = (props) => {
+  const { page, handleSignIn, handleRegister } = props;
+
   const formik = useFormik({
     initialValues: {
       username: "",
@@ -42,26 +38,24 @@ const InputUser = () => {
         ),
     }),
     onSubmit: (values) => {
-      UserService.signIn(values)
-        .then((res) => {
-          console.log(res);
-          toast.success(res.data.message);
-          cookies.set("token", res.data.accessToken);
-          setTimeout(() => {
-            navigate(`/todo`, { replace: true });
-          }, 2500);
-        })
-        .catch((error) => {
-          console.log(error);
-        });
+      if (page === "login") {
+        handleSignIn(values);
+      } else {
+        handleRegister(values);
+      }
     },
   });
   return (
     <form onSubmit={formik.handleSubmit} id="userForm">
       <Box>
-        <h2 style={{ color: "black", fontSize: "30px" }}>
-          Log into To-Do List App
-        </h2>
+        {page === "login" ? (
+          <h2 style={{ color: "black", fontSize: "30px" }}>
+            Log into To-Do List App
+          </h2>
+        ) : (
+          <h2 style={{ color: "black", fontSize: "30px" }}>Create a Account</h2>
+        )}
+
         <Box sx={{ height: "100%", width: "80%" }}>
           <Box sx={{ py: 2 }}>
             <Typography
@@ -122,7 +116,7 @@ const InputUser = () => {
             onClick={formik.handleSubmit}
             form="userForm"
           >
-            SIGN IN
+            {page === "login" ? "SIGN IN" : "SIGN UP"}
           </ColorButton>
         </Box>
       </Box>

@@ -2,15 +2,11 @@ import React, { useContext } from "react";
 import Box from "@mui/material/Box";
 import Grid from "@mui/material/Grid";
 import { makeStyles } from "@mui/styles";
-import { Link } from "react-router-dom";
 import InputUser from "../InputUser";
 import { UserContext } from "../../../contexts/UserContext/UserContext";
-import { useNavigate } from "react-router-dom";
-import Cookies from "universal-cookie";
-import { toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
-const cookies = new Cookies();
-
+import { toast } from "react-toastify";
+import { useNavigate } from "react-router-dom";
 toast.configure({});
 
 const useStyles = makeStyles({
@@ -30,9 +26,9 @@ const useStyles = makeStyles({
     width: "100%",
     height: "100%",
     backgroundImage:
-      'url("https://media-www.sqspcdn.com/images/pages/tour/overview-websites/customer-quote-block/adrienne-raquel-1500w.jpg")',
-    backgroundSize: "cover",
-    backgroundPosition: "center",
+      'url("https://images.unsplash.com/photo-1556741533-411cf82e4e2d?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1740&q=80")',
+    backgroundSize: "100%",
+    backgroundPosition: "100%",
     backgroundRepeat: "no-repeat",
   },
   TextField: {
@@ -40,22 +36,22 @@ const useStyles = makeStyles({
   },
 });
 
-const SignIn = () => {
-  let navigate = useNavigate();
+export const SignUp = () => {
   const classes = useStyles();
-  const { handleSignIn } = useContext(UserContext);
+  const { handleSignUp } = useContext(UserContext);
+  let navigate = useNavigate();
 
-  const handleLogIn = (user) => {
-    handleSignIn(user)
+  const handleRegister = (user) => {
+    handleSignUp(user)
       .then((res) => {
         if (res.status === 200) {
-          toast.success("Đăng nhập thành công");
-          cookies.set("token", res.data.accessToken);
+          toast.success("Đăng ký tài khoản thành công");
+
           setTimeout(() => {
-            navigate(`/todo`, { replace: true });
+            navigate(`/login`, { replace: true });
           }, 2500);
         } else {
-          toast.error("Lỗi đăng nhập");
+          toast.error("Lỗi đăng ký tài khoản");
         }
       })
       .catch((error) => {
@@ -76,11 +72,7 @@ const SignIn = () => {
               xs={6}
               className={classes.customText}
               sx={{ display: "flex", justifyContent: "flex-end" }}
-            >
-              <Link to="/register">
-                <span>CREATE ACCOUNT</span>
-              </Link>
-            </Grid>
+            ></Grid>
           </Grid>
           <Box
             sx={{
@@ -93,7 +85,7 @@ const SignIn = () => {
           >
             <Grid container sx={{ height: "80%", width: "100%" }}>
               <Grid item xs={6}>
-                <InputUser page={"login"} handleSignIn={handleLogIn} />
+                <InputUser page={"register"} handleRegister={handleRegister} />
               </Grid>
 
               <Grid item xs={6} sx={{ height: "100%" }}>
@@ -106,5 +98,3 @@ const SignIn = () => {
     </>
   );
 };
-
-export default SignIn;
