@@ -13,13 +13,16 @@ import MenuItem from "@mui/material/MenuItem";
 import { Outlet } from "react-router";
 import { Link } from "react-router-dom";
 import Cookies from "universal-cookie";
+import { useNavigate } from "react-router-dom";
 import { UserContext } from "../contexts/UserContext/UserContext";
+import { toast } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
 const pages = ["Products", "Pricing", "Blog"];
 const settings = ["Profile", "Account", "Dashboard", "Logout"];
-
+toast.configure({});
 const Header = () => {
   const cookies = new Cookies();
-
+  let navigate = useNavigate();
   const token = cookies.get("token");
   const [accessToken, setAccessToken] = useState(null);
 
@@ -56,6 +59,15 @@ const Header = () => {
         return error;
       });
   };
+
+  const handleLogOut = () => {
+    cookies.remove("token");
+    toast.success("Đăng xuất thành công.");
+    setTimeout(() => {
+      navigate(`/`, { replace: true });
+    }, 2500);
+  };
+
   useEffect(() => {
     setAccessToken(token);
     fetchDataProfile();
@@ -202,7 +214,7 @@ const Header = () => {
             ) : (
               <Box sx={{ flexGrow: 0 }}>
                 <Tooltip title="Open settings">
-                  <IconButton onClick={handleOpenUserMenu} sx={{ p: 0 }}>
+                  <IconButton sx={{ p: 0 }}>
                     <Typography
                       textAlign="center"
                       sx={{
@@ -213,6 +225,7 @@ const Header = () => {
                         letterSpacing: "0.05rem",
                         textDecoration: "none",
                       }}
+                      onClick={() => handleLogOut()}
                     >
                       LOG OUT
                     </Typography>
@@ -234,29 +247,6 @@ const Header = () => {
                     </Box>
                   </IconButton>
                 </Tooltip>
-
-                {/* <Menu
-                  sx={{ mt: "45px" }}
-                  id="menu-appbar"
-                  anchorEl={anchorElUser}
-                  anchorOrigin={{
-                    vertical: "top",
-                    horizontal: "right",
-                  }}
-                  keepMounted
-                  transformOrigin={{
-                    vertical: "top",
-                    horizontal: "right",
-                  }}
-                  open={Boolean(anchorElUser)}
-                  onClose={handleCloseUserMenu}
-                >
-                  {settings.map((setting) => (
-                    <MenuItem key={setting} onClick={handleCloseUserMenu}>
-                      <Typography textAlign="center">{setting}</Typography>
-                    </MenuItem>
-                  ))}
-                </Menu> */}
               </Box>
             )}
           </Toolbar>

@@ -10,6 +10,7 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import React, { useState } from "react";
 
 import Checkbox from "@mui/material/Checkbox";
+import DialogConfirm from "./ToDoForm/DialogConfirm";
 
 const label = { inputProps: { "aria-label": "Checkbox demo" } };
 
@@ -34,8 +35,17 @@ const useStyles = makeStyles(() => ({
 
 const ToDoComponent = (props) => {
   const classes = useStyles();
-  const { todo } = props;
+  const { todo, handleUpdateToDo, handleDeleteToDoList } = props;
   const [openModule, setOpenModule] = useState(false);
+  const [dialog, setDialog] = useState(false);
+  const [todoItem, setToDoItem] = useState("");
+  const handleOpenDialog = (todo) => {
+    setDialog(true);
+    setToDoItem(todo);
+  };
+  const handleCloseDialog = () => {
+    setDialog(false);
+  };
   return (
     <>
       <Box sx={{ flexGrow: 1, py: 0.5 }}>
@@ -67,6 +77,7 @@ const ToDoComponent = (props) => {
                 component="span"
                 color="inherit"
                 sx={{ width: 34, height: 34 }}
+                onClick={() => handleUpdateToDo(todo)}
               >
                 <FontAwesomeIcon
                   icon={faPen}
@@ -76,6 +87,7 @@ const ToDoComponent = (props) => {
               <IconButton
                 component="span"
                 color="inherit"
+                onClick={() => handleOpenDialog(todo)}
                 sx={{ width: 34, height: 34 }}
               >
                 <FontAwesomeIcon
@@ -184,6 +196,12 @@ const ToDoComponent = (props) => {
             </Box>
           </Collapse>
         </Box>
+        <DialogConfirm
+          dialog={dialog}
+          handleCloseDialog={handleCloseDialog}
+          todoItem={todoItem}
+          handleDeleteToDoList={handleDeleteToDoList}
+        />
       </Box>
     </>
   );

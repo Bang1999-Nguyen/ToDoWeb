@@ -38,15 +38,23 @@ const ToDo = () => {
   const [toDoList, setToDoList] = useState("");
   const token = cookies.get("token");
   const [isLoading, setIsLoading] = useState(false);
-  const { getToDoList, createToDoList } = useContext(ToDoContext);
-  //   const [isEditing, setIsEditing] = useState(false);
+  const { getToDoList, createToDoList, updateToDoList, deleteToDoList } =
+    useContext(ToDoContext);
+  const [isEditing, setIsEditing] = useState(false);
   const [openModal, setOpenModal] = useState(false);
+  const [todoCurrent, setTodoCurrent] = useState("");
 
   const handleOpenModal = () => {
     setOpenModal(true);
   };
   const handleCloseModal = () => {
     setOpenModal(false);
+    setIsEditing(false);
+  };
+  const handleOpenDialogUpdate = (todo) => {
+    setOpenModal(true);
+    setIsEditing(true);
+    setTodoCurrent(todo);
   };
 
   const fetchToDoList = () => {
@@ -66,12 +74,46 @@ const ToDo = () => {
       ...values,
       createDate: moment(values.createDate).format("DD/MM/YYYY"),
     };
+    setIsLoading(true);
     createToDoList(bodyData, token)
       .then((res) => {
+        setIsLoading(false);
         toast.success("Tạo công việc / nhiệm vụ thành công");
         fetchToDoList();
       })
       .catch((error) => {
+        setIsLoading(false);
+        return error;
+      });
+  };
+  const handleUpdateToDoList = (todo) => {
+    const bodyData = {
+      title: todo.title,
+      description: todo.description,
+      status: todo.status,
+      createDate: moment(todo.createDate).format("DD/MM/YYYY"),
+    };
+    setIsLoading(true);
+    updateToDoList(todo._id, bodyData, token)
+      .then((res) => {
+        setIsLoading(false);
+        toast.success("Cập nhật công việc / nhiệm vụ thành công");
+        fetchToDoList();
+      })
+      .catch((error) => {
+        setIsLoading(false);
+        return error;
+      });
+  };
+  const handleDeleteToDoList = (todo) => {
+    deleteToDoList(todo._id, token)
+      .then((res) => {
+        setIsLoading(false);
+        toast.success("Xoá công việc / nhiệm vụ thành công");
+        fetchToDoList();
+      })
+      .catch((error) => {
+        setIsLoading(false);
         return error;
       });
   };
@@ -123,7 +165,12 @@ const ToDo = () => {
               {toDoList.length > 0 ? (
                 <Box>
                   {toDoList.map((todo) => (
-                    <ToDoComponent key={todo.id} todo={todo} />
+                    <ToDoComponent
+                      key={todo.id}
+                      todo={todo}
+                      handleUpdateToDo={handleOpenDialogUpdate}
+                      handleDeleteToDoList={handleDeleteToDoList}
+                    />
                   ))}
                 </Box>
               ) : (
@@ -150,6 +197,9 @@ const ToDo = () => {
             openModal={openModal}
             handleCloseModal={handleCloseModal}
             createToDoList={handleCreateTodoList}
+            isEditing={isEditing}
+            todoCurrent={todoCurrent}
+            handleUpdateToDoList={handleUpdateToDoList}
           />
         </Grid>
       </Box>

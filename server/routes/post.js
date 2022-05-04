@@ -60,8 +60,8 @@ router.put("/:id", verifyToken, async (req, res) => {
   try {
     let updatePost = {
       title,
-      description: description || "",
-      status: status || true,
+      description: description,
+      status: status,
       createDate,
       user: req.userId,
     };

@@ -38,6 +38,7 @@ export const UserProvider = ({ children }) => {
         return error;
       });
   };
+
   const getUserProfile = (token) => {
     return UserService.getUserProfile(token)
       .then((res) => {
@@ -51,6 +52,7 @@ export const UserProvider = ({ children }) => {
         return error;
       });
   };
+
   const userData = {
     user,
     dispatch,

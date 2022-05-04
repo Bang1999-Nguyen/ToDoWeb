@@ -41,11 +41,34 @@ export const ToDoProvider = ({ children }) => {
       });
   };
 
+  const updateToDoList = (id, todo, token) => {
+    return todoService
+      .updateToDo(id, todo, token)
+      .then((res) => {
+        return res;
+      })
+      .catch((error) => {
+        return error;
+      });
+  };
+  const deleteToDoList = (id, token) => {
+    return todoService
+      .deleteToDo(id, token)
+      .then((res) => {
+        return res;
+      })
+      .catch((error) => {
+        return error;
+      });
+  };
+
   const toDoData = {
     toDo,
     dispatch,
     getToDoList,
     createToDoList,
+    updateToDoList,
+    deleteToDoList,
   };
   return (
     <ToDoContext.Provider value={toDoData}>{children}</ToDoContext.Provider>

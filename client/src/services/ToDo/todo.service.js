@@ -8,5 +8,11 @@ class ToDoService {
   createToDo(todo, token) {
     return callApi("post", "POST", todo, token);
   }
+  updateToDo(id, todo, token) {
+    return callApi(`post/${id}`, "PUT", todo, token);
+  }
+  deleteToDo(id, token) {
+    return callApi(`post/${id}`, "DELETE", null, token);
+  }
 }
 export default new ToDoService();

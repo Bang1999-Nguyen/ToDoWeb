@@ -1,4 +1,4 @@
-import * as React from "react";
+import React, { useState, useEffect } from "react";
 import PropTypes from "prop-types";
 import Button from "@mui/material/Button";
 import { styled } from "@mui/material/styles";
@@ -12,6 +12,7 @@ import * as Yup from "yup";
 import CloseIcon from "@mui/icons-material/Close";
 import { purple } from "@mui/material/colors";
 import InputToDoForm from "./InputToDoForm";
+import moment from "moment";
 
 const BootstrapDialog = styled(Dialog)(({ theme }) => ({
   "& .MuiDialogContent-root": {
@@ -48,30 +49,58 @@ BootstrapDialogTitle.propTypes = {
   children: PropTypes.node,
   onClose: PropTypes.func.isRequired,
 };
+const initalState = {
+  title: "",
+  createDate: "",
+  description: "",
+  status: true,
+};
 
 const ToDoForm = (props) => {
-  const { openModal, handleCloseModal, createToDoList } = props;
+  const {
+    openModal,
+    handleCloseModal,
+    createToDoList,
+    isEditing,
+    todoCurrent,
+    handleUpdateToDoList,
+  } = props;
 
   const handleResetForm = () => {
     formik.resetForm();
     handleCloseModal();
   };
+  const [toDoState, setToDoState] = useState(initalState);
   const formik = useFormik({
-    initialValues: {
-      title: "",
-      createDate: "",
-      description: "",
-      status: true,
-    },
+    enableReinitialize: true,
+    initialValues: toDoState,
     validationSchema: Yup.object({
       title: Yup.string().required("Tên công việc không được bỏ trống"),
       createDate: Yup.string().required("Ngày tạo không được bỏ trống"),
     }),
     onSubmit: (values) => {
-      createToDoList(values);
+      if (isEditing) {
+        handleUpdateToDoList(values);
+      } else {
+        createToDoList(values);
+      }
+
       handleResetForm();
     },
   });
+  let parsed = moment(todoCurrent.createDate, "MMMM Do YYYY, h:mm:ss a");
+
+  useEffect(() => {
+    if (isEditing) {
+      setToDoState({
+        ...todoCurrent,
+        createDate: parsed.format(),
+      });
+    } else {
+      setToDoState(initalState);
+    }
+  }, [isEditing]);
+
   return (
     <>
       <form onSubmit={formik.handleSubmit} id="todoForm">
@@ -85,7 +114,9 @@ const ToDoForm = (props) => {
             onClose={handleResetForm}
             sx={{ fontSize: "18px" }}
           >
-            Tạo công việc / nhiệm vụ
+            {isEditing
+              ? "Chỉnh sửa công việc / nhiệm vụ"
+              : " Tạo công việc / nhiệm vụ"}
           </BootstrapDialogTitle>
           <DialogContent dividers>
             <InputToDoForm formik={formik} />

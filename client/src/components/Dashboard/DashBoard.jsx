@@ -1,9 +1,10 @@
-import React from "react";
+import React, { useState, useEffect } from "react";
 import Box from "@mui/material/Box";
 import Grid from "@mui/material/Grid";
 import { makeStyles } from "@mui/styles";
 import Typography from "@mui/material/Typography";
 import { Link } from "react-router-dom";
+import Cookies from "universal-cookie";
 
 const useStyles = makeStyles({
   bgDashboard: {
@@ -59,7 +60,15 @@ const useStyles = makeStyles({
 });
 
 const DashBoard = () => {
+  const cookies = new Cookies();
+  const token = cookies.get("token");
+  const [accessToken, setAccessToken] = useState(null);
   const classes = useStyles();
+
+  useEffect(() => {
+    setAccessToken(token);
+  }, [token]);
+
   return (
     <Box sx={{ flexGrow: 1 }}>
       <Grid container>
@@ -101,9 +110,15 @@ const DashBoard = () => {
             <Box className={classes.btnStyle}>
               <span className={classes.textDashboard}>
                 {" "}
-                <Link to="/login" style={{ color: "black" }}>
-                  GET STARTED
-                </Link>
+                {accessToken === null || accessToken === undefined ? (
+                  <Link to="/login" style={{ color: "black" }}>
+                    GET STARTED
+                  </Link>
+                ) : (
+                  <Link to="/todo" style={{ color: "black" }}>
+                    GO TO-DO LIST
+                  </Link>
+                )}
                 <span style={{ margin: "0 5px" }}>→</span>
               </span>
             </Box>
