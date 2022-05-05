@@ -12,7 +12,7 @@ POST http://localhost:5000/api/auth/login
 Content-type: application/json
 
 {
-    "username":"TuyetBang",
+    "username":"admincmcts",
     "password":"Bang2269@"
 }
 ###
@@ -51,4 +51,58 @@ Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOiI2MjZlM
 ###
 GET http://localhost:5000/api/auth/profile
 Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOiI2MjcxZjRiMGI0YTA3NDQxZWRlMjc0Y2UiLCJpYXQiOjE2NTE2MzU0MTh9.y5Ukm_7a5PmNBcLsBg5TzI_E6d0ZTWhUjdbJICYnigI
+
+###
+GET http://localhost:5000/api/auth/users
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOiI2MjcxZjRiMGI0YTA3NDQxZWRlMjc0Y2UiLCJpYXQiOjE2NTE2MzU0MTh9.y5Ukm_7a5PmNBcLsBg5TzI_E6d0ZTWhUjdbJICYnigI
+
+
+###
+# POST http://localhost:5000/api/auth/users
+# Content-type: application/json
+# Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOiI2MjcwMDIzMWYwYmE4NTc1YWZiZmZjZTIiLCJpYXQiOjE2NTE1MDc3OTB9.F7kNjj29aVU8kiUtGKYPfAYtTK_XTvmLGNAjtarGxXE
+
+# {
+#  "username": "Nttbang",
+#     "lastname": "Băng",
+#     "firstname":"Nguyễn",
+#     "birthday":"12/12/2022",
+#     "description":"Regain clarity and calmness by getting all those tasks out of your head and onto your to-do list (no matter where you are or what device you use).",
+#     "createDate":"16/12/2022"
+# }
+
+###
+POST http://localhost:5000/api/auth/users
+Content-type: application/json
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOiI2MjcwMDIzMWYwYmE4NTc1YWZiZmZjZTIiLCJpYXQiOjE2NTE1MDc3OTB9.F7kNjj29aVU8kiUtGKYPfAYtTK_XTvmLGNAjtarGxXE
+
+{
+    "username": "nttbang",
+    "lastname": "Băng",
+    "firstname":"Nguyễn Tuyết Thị",
+    "birthday":"22/06/1999",
+    "status": true,
+    "phone":"0357911329",
+    "email":"bangntt18403c@st.uel.edu.vn",
+    "description":"select.....",
+    "address":"Bình Thạnh, TP.HCM"
+}
+
+###
+PUT http://localhost:5000/api/auth/users/62739547e2cef5781f9b429e
+Content-type: application/json
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOiI2MjcyMmVhMDE4NWI3MWI0ODVhYzBkYTIiLCJpYXQiOjE2NTE3NDQzOTd9.pOpZqlkRPMMb5v9reN5H-0he7YGqBooNPfq9vC07_W4
+
+
+{
+    "username": "nttbang1233",
+    "lastname": "Băng",
+    "firstname":"Nguyễn Tuyết Thị",
+    "birthday":"22/06/1999",
+    "status": true,
+    "phone":"0357911329",
+    "email":"bangntt18403c@st.uel.edu.vn",
+    "description":"select.....",
+    "address":"Thành phố Biên Hoà, Đồng Nai"
+}
 

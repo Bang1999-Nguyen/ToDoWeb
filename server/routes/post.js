@@ -46,6 +46,7 @@ router.get("/", verifyToken, async (req, res) => {
     res.json(500).json({ success: false, message: "Internal Server Error" });
   }
 });
+
 // @route PUT api/posts
 // @access private
 router.put("/:id", verifyToken, async (req, res) => {
@@ -86,7 +87,7 @@ router.put("/:id", verifyToken, async (req, res) => {
     });
   } catch (error) {
     console.log(error);
-    res.json(500).json({ success: false, message: "Internal Server Error" });
+    res.status(500).json({ success: false, message: "Internal Server Error" });
   }
 });
 
