@@ -123,8 +123,23 @@ router.delete("/:id", verifyToken, async (req, res) => {
       posts: deletePost,
     });
   } catch (error) {
-    console.log(error);
-    res.json(500).json({ success: false, message: "Internal Server Error" });
+    // console.log(error);
+    res.status(500).json({ success: false, message: "Internal Server Error" });
+  }
+});
+// check all notifications
+
+router.post("/all", verifyToken, async (req, res) => {
+  try {
+    let posts = await Post.find({ user: req.userId }).populate("user", [
+      "username",
+    ]);
+    posts = posts.map((post) => {
+      return { ...post, status: false };
+    });
+    res.json({ success: true, posts: posts });
+  } catch (error) {
+    res.status(500).json({ success: false, message: "Internal Server Error" });
   }
 });
 

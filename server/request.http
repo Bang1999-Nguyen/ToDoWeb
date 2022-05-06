@@ -12,7 +12,7 @@ POST http://localhost:5000/api/auth/login
 Content-type: application/json
 
 {
-    "username":"admincmcts",
+    "username":"Tuyết Băng",
     "password":"Bang2269@"
 }
 ###
@@ -53,8 +53,8 @@ GET http://localhost:5000/api/auth/profile
 Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOiI2MjcxZjRiMGI0YTA3NDQxZWRlMjc0Y2UiLCJpYXQiOjE2NTE2MzU0MTh9.y5Ukm_7a5PmNBcLsBg5TzI_E6d0ZTWhUjdbJICYnigI
 
 ###
-GET http://localhost:5000/api/auth/users
-Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOiI2MjcxZjRiMGI0YTA3NDQxZWRlMjc0Y2UiLCJpYXQiOjE2NTE2MzU0MTh9.y5Ukm_7a5PmNBcLsBg5TzI_E6d0ZTWhUjdbJICYnigI
+GET http://localhost:5000/api/admin/users
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOiI2MjcyMmVhMDE4NWI3MWI0ODVhYzBkYTIiLCJpYXQiOjE2NTE4MDU1ODh9.bVCvaNgeFfCi6dX7MCt2AsLkrolSBT_JZKdmGQO9myk
 
 
 ###
@@ -72,9 +72,9 @@ Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOiI2MjcxZ
 # }
 
 ###
-POST http://localhost:5000/api/auth/users
+POST http://localhost:5000/api/admin/users
 Content-type: application/json
-Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOiI2MjcwMDIzMWYwYmE4NTc1YWZiZmZjZTIiLCJpYXQiOjE2NTE1MDc3OTB9.F7kNjj29aVU8kiUtGKYPfAYtTK_XTvmLGNAjtarGxXE
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOiI2MjcyMmVhMDE4NWI3MWI0ODVhYzBkYTIiLCJpYXQiOjE2NTE4MDU1ODh9.bVCvaNgeFfCi6dX7MCt2AsLkrolSBT_JZKdmGQO9myk
 
 {
     "username": "nttbang",
@@ -89,20 +89,35 @@ Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOiI2MjcwM
 }
 
 ###
-PUT http://localhost:5000/api/auth/users/62739547e2cef5781f9b429e
+PUT http://localhost:5000/api/admin/users/62748db3ad9aadc8fcffc276
 Content-type: application/json
-Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOiI2MjcyMmVhMDE4NWI3MWI0ODVhYzBkYTIiLCJpYXQiOjE2NTE3NDQzOTd9.pOpZqlkRPMMb5v9reN5H-0he7YGqBooNPfq9vC07_W4
-
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOiI2MjcyMmVhMDE4NWI3MWI0ODVhYzBkYTIiLCJpYXQiOjE2NTE4MDU1ODh9.bVCvaNgeFfCi6dX7MCt2AsLkrolSBT_JZKdmGQO9myk
 
 {
     "username": "nttbang1233",
     "lastname": "Băng",
-    "firstname":"Nguyễn Tuyết Thị",
+    "firstname":"Nguyễn Tuyết",
     "birthday":"22/06/1999",
     "status": true,
     "phone":"0357911329",
     "email":"bangntt18403c@st.uel.edu.vn",
     "description":"select.....",
-    "address":"Thành phố Biên Hoà, Đồng Nai"
+    "address":"Thành phố Đà Lạt"
 }
+
+###
+DELETE http://localhost:5000/api/admin/users/62739547e2cef5781f9b429e
+Content-type: application/json
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOiI2MjcyMmVhMDE4NWI3MWI0ODVhYzBkYTIiLCJpYXQiOjE2NTE4MDQ3NDR9.TgpFF0Q1_HlBC8sS-_a-wImFa4fK_ALhFV5DTy4Pnxo
+
+###
+POST http://localhost:5000/api/post/all
+Content-type: application/json
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOiI2MjcyMmVhMDE4NWI3MWI0ODVhYzBkYTIiLCJpYXQiOjE2NTE4MDcxNjd9.DzgfXCvzOAqnfTT9d4qIlsv_twOpP8Yj3Oiu0dNl-y8
+
+# {
+#    [
+#        "626de4d0aba25cda26690656", "626de517aba25cda26690658"
+#    ]
+# }
 

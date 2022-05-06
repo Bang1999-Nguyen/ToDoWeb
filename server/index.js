@@ -6,6 +6,8 @@ app.use(express.json());
 app.use(cors());
 const authRouter = require("./routes/auth");
 const postRouter = require("./routes/post");
+const adminRouter = require("./routes/admin");
+
 const connectDB = async () => {
   try {
     await mongoose.connect(
@@ -25,6 +27,7 @@ connectDB();
 // auth router
 app.use("/api/auth", authRouter);
 app.use("/api/post", postRouter);
+app.use("/api/admin", adminRouter);
 
 const PORT = 5000;
 

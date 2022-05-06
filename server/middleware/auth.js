@@ -3,7 +3,6 @@ const jwt = require("jsonwebtoken");
 const verifytoken = (req, res, next) => {
   const authHeader = req.header("Authorization");
   const token = authHeader && authHeader.split(" ")[1];
-
   if (!token) {
     return res
       .status(401)
@@ -14,7 +13,6 @@ const verifytoken = (req, res, next) => {
     req.userId = decoded.userId;
     next();
   } catch (error) {
-    console.log(error);
     res.status(403).json({ success: false, message: "Fobidden" });
   }
 };

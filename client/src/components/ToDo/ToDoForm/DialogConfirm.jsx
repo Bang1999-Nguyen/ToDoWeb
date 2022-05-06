@@ -85,7 +85,7 @@ const DialogConfirm = (props) => {
             sx={{ px: 6, py: 1 }}
             variant="contained"
             color="error"
-            onClick={() => handleDeleteToDoList(todoItem)}
+            onClick={() => handleDeleteToDoList(todoItem, handleCloseDialog)}
           >
             Xác nhận
           </Button>

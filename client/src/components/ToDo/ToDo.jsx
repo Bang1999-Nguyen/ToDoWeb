@@ -13,6 +13,7 @@ import { toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import LoadingSippner from "../Lazy/LoadingSippner";
 toast.configure({});
+
 const useStyles = makeStyles({
   todoSection: {
     width: "100%",
@@ -69,6 +70,7 @@ const ToDo = () => {
         return error;
       });
   };
+
   const handleCreateTodoList = (values) => {
     const bodyData = {
       ...values,
@@ -86,6 +88,7 @@ const ToDo = () => {
         return error;
       });
   };
+
   const handleUpdateToDoList = (todo) => {
     const bodyData = {
       title: todo.title,
@@ -105,11 +108,13 @@ const ToDo = () => {
         return error;
       });
   };
-  const handleDeleteToDoList = (todo) => {
+
+  const handleDeleteToDoList = (todo, handleCloseDialog) => {
     deleteToDoList(todo._id, token)
       .then((res) => {
         setIsLoading(false);
         toast.success("Xoá công việc / nhiệm vụ thành công");
+        handleCloseDialog();
         fetchToDoList();
       })
       .catch((error) => {
@@ -121,6 +126,7 @@ const ToDo = () => {
   useEffect(() => {
     fetchToDoList();
   }, []);
+
   return (
     <>
       {isLoading ? <LoadingSippner /> : null}
@@ -164,14 +170,11 @@ const ToDo = () => {
               </Box>
               {toDoList.length > 0 ? (
                 <Box>
-                  {toDoList.map((todo) => (
-                    <ToDoComponent
-                      key={todo.id}
-                      todo={todo}
-                      handleUpdateToDo={handleOpenDialogUpdate}
-                      handleDeleteToDoList={handleDeleteToDoList}
-                    />
-                  ))}
+                  <ToDoComponent
+                    todo={toDoList}
+                    handleUpdateToDo={handleOpenDialogUpdate}
+                    handleDeleteToDoList={handleDeleteToDoList}
+                  />
                 </Box>
               ) : (
                 <Box
